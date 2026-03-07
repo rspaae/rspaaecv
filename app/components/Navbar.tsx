@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react';
 import anime from 'animejs';
-import CurrentlyPlaying from './CurrentlyPlaying';
 
 const navLinks = [
     { label: 'Home', href: '#home' },
@@ -105,9 +104,6 @@ export default function Navbar() {
                             )}
                         </a>
                     ))}
-                    <div className="ml-4">
-                        <CurrentlyPlaying />
-                    </div>
                 </div>
 
                 {/* Mobile Menu Button */}
