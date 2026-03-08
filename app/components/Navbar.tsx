@@ -2,20 +2,23 @@
 
 import { useEffect, useRef, useState } from 'react';
 import anime from 'animejs';
-
-const navLinks = [
-    { label: 'Home', href: '#home' },
-    { label: 'About', href: '#about' },
-    { label: 'Tech', href: '#tech' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Contact', href: '#contact' },
-];
+import LanguageToggle from './LanguageToggle';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Navbar() {
     const navRef = useRef<HTMLElement>(null);
     const [activeSection, setActiveSection] = useState('home');
     const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
+    const { t } = useLanguage();
+
+    const navLinks = [
+        { label: t('nav.home'), href: '#home' },
+        { label: t('nav.about'), href: '#about' },
+        { label: t('nav.tech'), href: '#tech' },
+        { label: t('nav.projects'), href: '#projects' },
+        { label: t('nav.contact'), href: '#contact' },
+    ];
 
     useEffect(() => {
         // Initial animation
@@ -104,6 +107,9 @@ export default function Navbar() {
                             )}
                         </a>
                     ))}
+                    <div className="ml-4 pl-4 border-l border-white/10">
+                        <LanguageToggle />
+                    </div>
                 </div>
 
                 {/* Mobile Menu Button */}
@@ -146,6 +152,10 @@ export default function Navbar() {
                             {link.label}
                         </a>
                     ))}
+                    <div className="px-4 py-3 mt-2 border-t border-white/10 flex justify-between items-center">
+                        <span className="text-sm text-white/50">Language</span>
+                        <LanguageToggle />
+                    </div>
                 </div>
             </div>
         </nav>

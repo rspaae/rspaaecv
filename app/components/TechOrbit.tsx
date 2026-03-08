@@ -2,6 +2,7 @@
 
 import ScrollReveal from './ScrollReveal';
 import TextScramble from './TextScramble';
+import { useLanguage } from '../context/LanguageContext';
 
 const techItems = [
     { name: 'React', color: '#61DAFB' },
@@ -18,6 +19,7 @@ const techItems = [
 ];
 
 export default function TechOrbit() {
+    const { t } = useLanguage();
     const radius = 180;
 
     return (
@@ -28,12 +30,12 @@ export default function TechOrbit() {
                         <div className="flex items-center justify-center gap-4 mb-4">
                             <div className="h-px w-[60px]" style={{ background: 'linear-gradient(90deg, transparent, var(--neon-violet))' }} />
                             <span className="text-sm font-medium uppercase tracking-[0.3em]" style={{ color: 'var(--neon-violet)' }}>
-                                Skills
+                                {t('tech.subtitle')}
                             </span>
                             <div className="h-px w-[60px]" style={{ background: 'linear-gradient(90deg, var(--neon-violet), transparent)' }} />
                         </div>
                         <h2 className="section-heading text-4xl md:text-5xl gradient-text">
-                            <TextScramble text="Tech Stack" as="span" />
+                            <TextScramble text={t('tech.title')} as="span" />
                         </h2>
                     </div>
                 </ScrollReveal>

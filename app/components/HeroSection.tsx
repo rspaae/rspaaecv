@@ -3,14 +3,17 @@
 import { useEffect, useRef } from 'react';
 import anime from 'animejs';
 import MagneticButton from './MagneticButton';
+import TypingText from './TypingText';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function HeroSection() {
     const nameRef = useRef<HTMLDivElement>(null);
     const subtitleRef = useRef<HTMLParagraphElement>(null);
     const ctaRef = useRef<HTMLDivElement>(null);
+    const { t } = useLanguage();
 
     const name = 'Rafa Ramdani';
-    const subtitle = 'Creative Developer & Designer';
+    const roles = t('hero.roles') as string[];
 
     useEffect(() => {
         // Staggered letter reveal — runs once on mount, not looping
@@ -108,30 +111,30 @@ export default function HeroSection() {
             </div>
 
             {/* Subtitle */}
-            <p
+            <div
                 ref={subtitleRef}
-                className="relative z-10 text-lg md:text-xl font-light tracking-widest uppercase opacity-0 mb-10"
+                className="relative z-10 text-lg md:text-xl font-light tracking-widest uppercase opacity-0 mb-10 min-h-[1.5rem] md:min-h-[1.75rem] flex items-center justify-center"
                 style={{ color: 'var(--text-secondary)' }}
             >
-                {subtitle}
-            </p>
+                <TypingText phrases={roles} typingSpeed={70} deletingSpeed={40} pauseDuration={1200} />
+            </div>
 
             {/* CTA */}
             <div ref={ctaRef} className="relative z-10 opacity-0 flex gap-4">
                 <MagneticButton href="#projects" className="gradient-text-alt !text-white">
-                    <span className="gradient-text">View My Work</span>
+                    <span className="gradient-text">{t('hero.viewWork')}</span>
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--neon-cyan)' }}>
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                 </MagneticButton>
                 <MagneticButton href="#contact">
-                    <span>Contact Me</span>
+                    <span>{t('hero.contact')}</span>
                 </MagneticButton>
             </div>
 
             {/* Scroll indicator */}
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-40">
-                <span className="text-xs uppercase tracking-[0.3em]" style={{ color: 'var(--text-muted)' }}>Scroll</span>
+                <span className="text-xs uppercase tracking-[0.3em]" style={{ color: 'var(--text-muted)' }}>{t('hero.scroll')}</span>
                 <div className="w-5 h-8 rounded-full border border-white/20 flex justify-center pt-1.5">
                     <div
                         className="w-1 h-2 rounded-full"

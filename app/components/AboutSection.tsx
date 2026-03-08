@@ -3,8 +3,10 @@
 import ScrollReveal from './ScrollReveal';
 import TiltCard from './TiltCard';
 import TextScramble from './TextScramble';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function AboutSection() {
+    const { t } = useLanguage();
     return (
         <section id="about" className="relative py-24 md:py-32" style={{ zIndex: 2 }}>
             <div className="max-w-6xl mx-auto px-6">
@@ -15,37 +17,32 @@ export default function AboutSection() {
                             <div className="flex items-center gap-4 mb-4">
                                 <div className="h-px flex-1 max-w-[60px]" style={{ background: 'linear-gradient(90deg, var(--neon-magenta), transparent)' }} />
                                 <span className="text-sm font-medium uppercase tracking-[0.3em]" style={{ color: 'var(--neon-magenta)' }}>
-                                    About Me
+                                    {t('about.title')}
                                 </span>
                             </div>
                             <h2
                                 className="section-heading text-4xl md:text-5xl mb-6"
                                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                             >
-                                <TextScramble text="Crafting Digital" as="span" />
+                                <TextScramble text={t('about.subtitle')} as="span" />
                                 <br />
                                 <span className="gradient-text">
-                                    <TextScramble text="Experiences" as="span" />
+                                    <TextScramble text={t('about.highlight')} as="span" />
                                 </span>
                             </h2>
                             <p className="text-base leading-relaxed mb-6" style={{ color: 'var(--text-secondary)' }}>
-                                I&apos;m a passionate full-stack developer with a keen eye for design and a love for creating
-                                interactive, visually stunning web applications. I believe in pushing the boundaries
-                                of what&apos;s possible on the web.
+                                {t('about.paragraph1')}
                             </p>
                             <p className="text-base leading-relaxed mb-8" style={{ color: 'var(--text-secondary)' }}>
-                                With expertise spanning from{' '}
-                                <span style={{ color: 'var(--neon-cyan)' }}>frontend frameworks</span> to{' '}
-                                <span style={{ color: 'var(--neon-violet)' }}>backend architecture</span>, I bring ideas
-                                to life with clean code and smooth animations. Every pixel matters, every interaction counts.
+                                {t('about.paragraph2')}
                             </p>
 
                             {/* Stats */}
                             <div className="grid grid-cols-3 gap-6">
                                 {[
-                                    { number: '3+', label: 'Years Exp.' },
-                                    { number: '20+', label: 'Projects' },
-                                    { number: '10+', label: 'Tech Stack' },
+                                    { number: '3+', label: t('about.experience') },
+                                    { number: '20+', label: t('about.projects') },
+                                    { number: '10+', label: t('tech.title') },
                                 ].map((stat) => (
                                     <div key={stat.label} className="text-center md:text-left">
                                         <div className="text-2xl md:text-3xl font-bold gradient-text mb-1" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
@@ -63,55 +60,66 @@ export default function AboutSection() {
                     {/* Decorative element */}
                     <ScrollReveal direction="right" delay={200}>
                         <div className="relative flex items-center justify-center">
-                            {/* Abstract decorative card */}
-                            <TiltCard className="glass-card relative w-full max-w-[380px] aspect-square flex items-center justify-center overflow-hidden">
+                            {/* Profile Card */}
+                            <TiltCard className="glass-card relative w-full max-w-[380px] p-8 flex flex-col items-center justify-center overflow-hidden">
                                 {/* Gradient circles */}
                                 <div
-                                    className="absolute w-48 h-48 rounded-full"
+                                    className="absolute w-48 h-48 rounded-full pointer-events-none"
                                     style={{
-                                        background: 'radial-gradient(circle, rgba(0,245,255,0.2) 0%, transparent 70%)',
-                                        top: '-20%',
+                                        background: 'radial-gradient(circle, rgba(0,245,255,0.15) 0%, transparent 70%)',
+                                        top: '-10%',
                                         right: '-10%',
                                         filter: 'blur(40px)',
                                         animation: 'float 6s ease-in-out infinite',
                                     }}
                                 />
                                 <div
-                                    className="absolute w-36 h-36 rounded-full"
+                                    className="absolute w-36 h-36 rounded-full pointer-events-none"
                                     style={{
-                                        background: 'radial-gradient(circle, rgba(255,0,229,0.2) 0%, transparent 70%)',
-                                        bottom: '-10%',
+                                        background: 'radial-gradient(circle, rgba(139,92,246,0.15) 0%, transparent 70%)',
+                                        bottom: '-5%',
                                         left: '-5%',
                                         filter: 'blur(40px)',
                                         animation: 'float 8s ease-in-out infinite reverse',
                                     }}
                                 />
 
-                                {/* Code snippet decoration */}
-                                <div className="relative z-10 text-left p-6 font-mono text-sm">
-                                    <div className="flex gap-2 mb-4">
-                                        <div className="w-3 h-3 rounded-full bg-red-500/60" />
-                                        <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
-                                        <div className="w-3 h-3 rounded-full bg-green-500/60" />
+                                {/* Profile Image */}
+                                <div className="relative w-32 h-32 md:w-36 md:h-36 rounded-full overflow-hidden border-[3px] border-white/10 mb-6 z-10 p-1">
+                                    <div className="w-full h-full rounded-full overflow-hidden bg-white/5 relative group">
+                                        <img
+                                            src="/profile.jpg"
+                                            alt="Rafa Ramdani"
+                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                            onError={(e) => {
+                                                (e.target as HTMLImageElement).src = 'https://ui-avatars.com/api/?name=Rafa+Ramdani&background=8b5cf6&color=fff&size=200';
+                                            }}
+                                        />
                                     </div>
-                                    <div style={{ color: 'var(--text-muted)' }}>
-                                        <span style={{ color: 'var(--neon-violet)' }}>const</span>{' '}
-                                        <span style={{ color: 'var(--neon-cyan)' }}>developer</span>{' '}
-                                        <span style={{ color: 'var(--text-muted)' }}>=</span> {'{'}
+                                </div>
+
+                                {/* Profile Info */}
+                                <div className="w-full relative z-10 space-y-4 font-mono text-xs md:text-sm border-t border-white/10 pt-6">
+                                    <div className="flex justify-between items-center" style={{ color: 'var(--text-secondary)' }}>
+                                        <span style={{ color: 'var(--neon-green)' }}>{t('about.profile.name')}</span>
+                                        <span className="text-white font-medium">Rafa Ramdani</span>
                                     </div>
-                                    <div className="pl-4" style={{ color: 'var(--text-secondary)' }}>
-                                        <span style={{ color: 'var(--neon-green)' }}>name</span>: <span style={{ color: '#fbbf24' }}>&apos;Rafa Ramdani&apos;</span>,
+                                    <div className="flex justify-between items-center" style={{ color: 'var(--text-secondary)' }}>
+                                        <span style={{ color: 'var(--neon-cyan)' }}>{t('about.profile.age')}</span>
+                                        <span className="text-white font-medium">{t('about.profile.ageValue')}</span>
                                     </div>
-                                    <div className="pl-4" style={{ color: 'var(--text-secondary)' }}>
-                                        <span style={{ color: 'var(--neon-green)' }}>role</span>: <span style={{ color: '#fbbf24' }}>&apos;Multi-Disciplinary Dev&apos;</span>,
+                                    <div className="flex justify-between items-center" style={{ color: 'var(--text-secondary)' }}>
+                                        <span style={{ color: 'var(--neon-violet)' }}>{t('about.profile.school')}</span>
+                                        <span className="text-white font-medium text-right max-w-[150px] truncate" title={t('about.profile.schoolValue')}>{t('about.profile.schoolValue')}</span>
                                     </div>
-                                    <div className="pl-4" style={{ color: 'var(--text-secondary)' }}>
-                                        <span style={{ color: 'var(--neon-green)' }}>passion</span>: <span style={{ color: '#fbbf24' }}>&apos;∞&apos;</span>,
+                                    <div className="flex justify-between items-center" style={{ color: 'var(--text-secondary)' }}>
+                                        <span style={{ color: 'var(--neon-magenta)' }}>{t('about.profile.email')}</span>
+                                        <a href="mailto:rafaramdanii31@gmail.com" className="text-white font-medium hover:text-[var(--neon-cyan)] transition-colors truncate max-w-[150px]" title="rafaramdanii31@gmail.com">rafaramdanii31@gmail.com</a>
                                     </div>
-                                    <div className="pl-4" style={{ color: 'var(--text-secondary)' }}>
-                                        <span style={{ color: 'var(--neon-green)' }}>coffee</span>: <span style={{ color: 'var(--neon-magenta)' }}>true</span>,
+                                    <div className="flex justify-between items-center" style={{ color: 'var(--text-secondary)' }}>
+                                        <span style={{ color: '#fbbf24' }}>{t('about.profile.ig')}</span>
+                                        <a href="https://instagram.com/inirspaa" target="_blank" rel="noopener noreferrer" className="text-white font-medium hover:text-[var(--neon-cyan)] transition-colors">@inirspaa</a>
                                     </div>
-                                    <div style={{ color: 'var(--text-muted)' }}>{'}'}</div>
                                 </div>
                             </TiltCard>
 

@@ -6,6 +6,7 @@ import ProjectCard from './ProjectCard';
 import ScrollReveal from './ScrollReveal';
 import TextScramble from './TextScramble';
 import { getRepositories, Repository } from '../lib/github';
+import { useLanguage } from '../context/LanguageContext';
 
 // Static fallback projects in case API fails or for specific branding
 const fallbackProjects = [
@@ -42,6 +43,7 @@ const fallbackProjects = [
 const COLORS = ['#00f5ff', '#8b5cf6', '#ff00e5', '#10b981', '#ec4899', '#3b82f6'];
 
 export default function HorizontalProjects() {
+    const { t } = useLanguage();
     const scrollerRef = useRef<HTMLDivElement>(null);
     const animeRef = useRef<any>(null);
     const [projects, setProjects] = useState<any[]>([]);
@@ -114,16 +116,16 @@ export default function HorizontalProjects() {
                     <div className="flex items-center gap-4 mb-4">
                         <div className="h-px flex-1 max-w-[60px]" style={{ background: 'linear-gradient(90deg, var(--neon-cyan), transparent)' }} />
                         <span className="text-sm font-medium uppercase tracking-[0.3em]" style={{ color: 'var(--neon-cyan)' }}>
-                            Portfolio
+                            {t('projects.subtitle')}
                         </span>
                     </div>
                     <h2
                         className="section-heading text-4xl md:text-5xl gradient-text mb-4"
                     >
-                        <TextScramble text="My Projects" as="span" />
+                        <TextScramble text={t('projects.title')} as="span" />
                     </h2>
                     <p className="text-base max-w-xl" style={{ color: 'var(--text-secondary)' }}>
-                        {loading ? 'Fetching latest work from GitHub...' : 'A curated selection of my live repositories.'}
+                        {loading ? 'Fetching latest work from GitHub...' : t('projects.subtitle')}
                     </p>
                 </ScrollReveal>
             </div>

@@ -3,6 +3,7 @@
 import ScrollReveal from './ScrollReveal';
 import MagneticButton from './MagneticButton';
 import TextScramble from './TextScramble';
+import { useLanguage } from '../context/LanguageContext';
 
 const socialLinks = [
     {
@@ -38,6 +39,8 @@ const socialLinks = [
 ];
 
 export default function ContactSection() {
+    const { t } = useLanguage();
+
     return (
         <section id="contact" className="relative py-24 md:py-32" style={{ zIndex: 2 }}>
             {/* Top accent line */}
@@ -48,17 +51,17 @@ export default function ContactSection() {
                     <div className="flex items-center justify-center gap-4 mb-4">
                         <div className="h-px w-[60px]" style={{ background: 'linear-gradient(90deg, transparent, var(--neon-green))' }} />
                         <span className="text-sm font-medium uppercase tracking-[0.3em]" style={{ color: 'var(--neon-green)' }}>
-                            Contact
+                            {t('contact.title')}
                         </span>
                         <div className="h-px w-[60px]" style={{ background: 'linear-gradient(90deg, var(--neon-green), transparent)' }} />
                     </div>
                     <h2
                         className="section-heading text-4xl md:text-6xl gradient-text mb-6"
                     >
-                        <TextScramble text="Let's Work Together" as="span" scrambleSpeed={25} />
+                        <TextScramble text={t('contact.title')} as="span" scrambleSpeed={25} />
                     </h2>
                     <p className="text-base md:text-lg max-w-lg mx-auto mb-12" style={{ color: 'var(--text-secondary)' }}>
-                        Have a project in mind? I&apos;d love to hear about it. Let&apos;s create something extraordinary together.
+                        {t('contact.subtitle')}
                     </p>
                 </ScrollReveal>
 
@@ -69,7 +72,7 @@ export default function ContactSection() {
                             href="mailto:hello@rspaa.dev"
                             className="!px-10 !py-4 !text-base !bg-gradient-to-r !from-neon-cyan/20 !to-neon-violet/20 !border-neon-violet/30"
                         >
-                            <span className="gradient-text font-bold">Say Hello 👋</span>
+                            <span className="gradient-text font-bold">{t('contact.send')} 👋</span>
                         </MagneticButton>
                     </div>
                 </ScrollReveal>

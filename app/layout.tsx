@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Outfit, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "./components/CustomCursor";
 import MouseSpotlight from "./components/MouseSpotlight";
 import SmoothScroll from "./components/SmoothScroll";
 import CommitStatus from "./components/CommitStatus";
+import { LanguageProvider } from "./context/LanguageContext";
 
-const inter = Inter({
-  variable: "--font-inter",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
   display: "swap",
 });
@@ -39,17 +40,19 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
+        className={`${outfit.variable} ${spaceGrotesk.variable} antialiased`}
         style={{
-          fontFamily: "'Inter', sans-serif",
+          fontFamily: "'Outfit', sans-serif",
         }}
       >
-        <SmoothScroll>
-          <CustomCursor />
-          <MouseSpotlight />
-          <CommitStatus />
-          {children}
-        </SmoothScroll>
+        <LanguageProvider>
+          <SmoothScroll>
+            <CustomCursor />
+            <MouseSpotlight />
+            <CommitStatus />
+            {children}
+          </SmoothScroll>
+        </LanguageProvider>
       </body>
     </html>
   );

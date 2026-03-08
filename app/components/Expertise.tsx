@@ -4,54 +4,58 @@ import ScrollReveal from './ScrollReveal';
 import TiltCard from './TiltCard';
 import TextScramble from './TextScramble';
 
-const expertiseItems = [
-    {
-        title: 'Web Developer',
-        role: 'Frontend & Full-stack',
-        description: 'Building modern, responsive, and high-performance web applications with a focus on user experience.',
-        icon: (
-            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 21h6l-.75-4M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-        ),
-        color: 'var(--neon-cyan)',
-    },
-    {
-        title: 'Game Developer',
-        role: 'Unity & Godot',
-        description: 'Creating immersive and interactive gaming experiences with smooth mechanics and catchy visuals.',
-        icon: (
-            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
-            </svg>
-        ),
-        color: 'var(--neon-magenta)',
-    },
-    {
-        title: 'Scripter',
-        role: 'Automation & Backend',
-        description: 'Developing powerful scripts to automate tasks and enhance functionality across various environments.',
-        icon: (
-            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-            </svg>
-        ),
-        color: 'var(--neon-green)',
-    },
-    {
-        title: 'Bot Developer',
-        role: 'Discord & Telegram',
-        description: 'Designing intelligent and versatile bots to streamline interactions and automate complex services.',
-        icon: (
-            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-            </svg>
-        ),
-        color: 'var(--neon-violet)',
-    },
-];
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Expertise() {
+    const { t } = useLanguage();
+
+    const expertiseItems = [
+        {
+            title: 'Web Developer',
+            role: t('expertise.webDevSubtitle') || 'Frontend & Full-stack',
+            description: t('expertise.webDevDesc') || 'Building modern, responsive, and high-performance web applications with a focus on user experience.',
+            icon: (
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 21h6l-.75-4M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+            ),
+            color: 'var(--neon-cyan)',
+        },
+        {
+            title: 'Game Developer',
+            role: t('expertise.gameDevSubtitle') || 'Unity & Godot',
+            description: t('expertise.gameDevDesc') || 'Creating immersive and interactive gaming experiences with smooth mechanics and catchy visuals.',
+            icon: (
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+                </svg>
+            ),
+            color: 'var(--neon-magenta)',
+        },
+        {
+            title: 'Scripter',
+            role: t('expertise.scripterSubtitle') || 'Automation & Backend',
+            description: t('expertise.scripterDesc') || 'Developing powerful scripts to automate tasks and enhance functionality across various environments.',
+            icon: (
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                </svg>
+            ),
+            color: 'var(--neon-green)',
+        },
+        {
+            title: 'Bot Developer',
+            role: t('expertise.botDevSubtitle') || 'Discord & Telegram',
+            description: t('expertise.botDevDesc') || 'Designing intelligent and versatile bots to streamline interactions and automate complex services.',
+            icon: (
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                </svg>
+            ),
+            color: 'var(--neon-violet)',
+        },
+    ];
+
     return (
         <section id="expertise" className="relative py-24 md:py-32" style={{ zIndex: 2 }}>
             <div className="max-w-6xl mx-auto px-6">
@@ -60,12 +64,12 @@ export default function Expertise() {
                         <div className="flex items-center justify-center gap-4 mb-4">
                             <div className="h-px w-[60px]" style={{ background: 'linear-gradient(90deg, transparent, var(--neon-cyan))' }} />
                             <span className="text-sm font-medium uppercase tracking-[0.3em]" style={{ color: 'var(--neon-cyan)' }}>
-                                Specialization
+                                {t('expertise.subtitle')}
                             </span>
                             <div className="h-px w-[60px]" style={{ background: 'linear-gradient(90deg, var(--neon-cyan), transparent)' }} />
                         </div>
                         <h2 className="section-heading text-4xl md:text-5xl gradient-text">
-                            <TextScramble text="Primary Expertise" as="span" />
+                            <TextScramble text={t('expertise.title')} as="span" />
                         </h2>
                     </div>
                 </ScrollReveal>

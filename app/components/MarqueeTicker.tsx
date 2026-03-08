@@ -1,14 +1,10 @@
+'use client';
+
+import { useLanguage } from '../context/LanguageContext';
+
 export default function MarqueeTicker() {
-    const items = [
-        '🚀 Web Developer',
-        '🎮 Game Developer',
-        '⚡ Scripter',
-        '🤖 Bot Developer',
-        '✨ UI/UX Enthusiast',
-        '💻 Full-Stack',
-        '🎨 Creative Coder',
-        '🔥 Open Source',
-    ];
+    const { t } = useLanguage();
+    const items = t('marquee') as string[];
 
     const repeated = [...items, ...items];
 
