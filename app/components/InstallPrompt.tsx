@@ -77,7 +77,7 @@ export default function InstallPrompt() {
     if (!showInstallBtn) return null;
 
     return (
-        <div style={{ animation: 'slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards' }} className="fixed bottom-6 left-6 z-[90] max-w-sm w-full md:w-auto glass-card p-4 border border-neon-magenta/30 shadow-[0_8px_32px_rgba(255,0,229,0.15)] flex items-start gap-4">
+        <div style={{ animation: 'slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards' }} className="fixed bottom-4 md:bottom-6 left-1/2 md:left-6 -translate-x-1/2 md:translate-x-0 z-[90] w-[calc(100%-2rem)] md:w-auto max-w-sm glass-card p-4 border border-neon-magenta/30 shadow-[0_8px_32px_rgba(255,0,229,0.15)] flex items-start gap-4">
             <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-neon-violet to-neon-magenta p-[1px] shrink-0">
                 <div className="w-full h-full rounded-2xl bg-[#050510] flex items-center justify-center overflow-hidden">
                     <img src="/icons/icon-192.png" alt="App Icon" className="w-8 h-8 rounded-lg" />

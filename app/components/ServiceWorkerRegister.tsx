@@ -56,7 +56,7 @@ export default function ServiceWorkerRegister() {
     if (!updateAvailable) return null;
 
     return (
-        <div style={{ animation: 'slideUp 0.5s ease-out forwards' }} className="fixed bottom-24 left-1/2 -translate-x-1/2 z-[100] glass-card px-6 py-4 flex flex-col md:flex-row items-center gap-4 border border-neon-cyan/30 shadow-[0_0_30px_rgba(0,245,255,0.15)] shadow-neon-cyan/20">
+        <div style={{ animation: 'slideUp 0.5s ease-out forwards' }} className="fixed bottom-24 md:bottom-24 left-1/2 -translate-x-1/2 z-[100] w-[calc(100%-2rem)] md:w-auto max-w-lg glass-card px-4 md:px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4 border border-neon-cyan/30 shadow-[0_0_30px_rgba(0,245,255,0.15)] shadow-neon-cyan/20">
             <div className="flex items-center gap-3">
                 <span className="text-xl animate-pulse">✨</span>
                 <div className="flex flex-col">
