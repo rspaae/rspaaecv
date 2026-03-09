@@ -1,24 +1,69 @@
 {
-    "name": "RSPAA | Creative Developer & Designer",
+    "id": "/",
+    "name": "ABOUT ME | RSPAA",
     "short_name": "RSPAA",
     "description": "Portfolio of RSPAA — Full-stack developer crafting stunning, interactive digital experiences.",
     "start_url": "/",
+    "scope": "/",
     "display": "standalone",
+    "display_override": [
+        "window-controls-overlay",
+        "standalone"
+    ],
     "background_color": "#050510",
     "theme_color": "#050510",
     "orientation": "portrait-primary",
+    "prefer_related_applications": false,
     "icons": [
         {
             "src": "/icons/icon-192.png",
             "sizes": "192x192",
             "type": "image/png",
-            "purpose": "any maskable"
+            "purpose": "any"
+        },
+        {
+            "src": "/icons/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
         },
         {
             "src": "/icons/icon-512.png",
             "sizes": "512x512",
             "type": "image/png",
-            "purpose": "any maskable"
+            "purpose": "any"
+        },
+        {
+            "src": "/icons/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "View Projects",
+            "short_name": "Projects",
+            "url": "/#projects",
+            "description": "See my latest projects and works",
+            "icons": [
+                {
+                    "src": "/icons/icon-192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        },
+        {
+            "name": "Contact Me",
+            "short_name": "Contact",
+            "url": "/#contact",
+            "description": "Get in touch with me",
+            "icons": [
+                {
+                    "src": "/icons/icon-192.png",
+                    "sizes": "192x192"
+                }
+            ]
         }
     ],
     "categories": [

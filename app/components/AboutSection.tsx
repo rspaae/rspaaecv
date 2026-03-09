@@ -113,8 +113,8 @@ export default function AboutSection() {
                                         <span className="text-white font-medium text-right max-w-[150px] truncate" title={t('about.profile.schoolValue')}>{t('about.profile.schoolValue')}</span>
                                     </div>
                                     <div className="flex justify-between items-center" style={{ color: 'var(--text-secondary)' }}>
-                                        <span style={{ color: 'var(--neon-magenta)' }}>{t('about.profile.email')}</span>
-                                        <a href="mailto:rafaramdanii31@gmail.com" className="text-white font-medium hover:text-[var(--neon-cyan)] transition-colors truncate max-w-[150px]" title="rafaramdanii31@gmail.com">rafaramdanii31@gmail.com</a>
+                                        <span style={{ color: 'var(--neon-magenta)' }}>{t('about.profile.whatsapp')}</span>
+                                        <a href="https://wa.me/6281572836875" target="_blank" rel="noopener noreferrer" className="text-white font-medium hover:text-[var(--neon-cyan)] transition-colors truncate max-w-[150px]" title="081572836875">081572836875</a>
                                     </div>
                                     <div className="flex justify-between items-center" style={{ color: 'var(--text-secondary)' }}>
                                         <span style={{ color: '#fbbf24' }}>{t('about.profile.ig')}</span>

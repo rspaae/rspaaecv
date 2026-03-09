@@ -6,6 +6,7 @@ import MouseSpotlight from "./components/MouseSpotlight";
 import SmoothScroll from "./components/SmoothScroll";
 import CommitStatus from "./components/CommitStatus";
 import ServiceWorkerRegister from "./components/ServiceWorkerRegister";
+import InstallPrompt from "./components/InstallPrompt";
 import { LanguageProvider } from "./context/LanguageContext";
 
 const outfit = Outfit({
@@ -66,6 +67,7 @@ export default function RootLayout({
             <MouseSpotlight />
             <CommitStatus />
             <ServiceWorkerRegister />
+            <InstallPrompt />
             {children}
           </SmoothScroll>
         </LanguageProvider>

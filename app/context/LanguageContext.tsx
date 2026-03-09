@@ -40,7 +40,7 @@ export const translations: Record<Language, TranslationDictionary> = {
                 ageValue: '16 Tahun',
                 school: 'Sekolah',
                 schoolValue: 'SMKN 11 Bandung',
-                email: 'Email',
+                whatsapp: 'WhatsApp',
                 ig: 'Instagram'
             }
         },
@@ -114,7 +114,7 @@ export const translations: Record<Language, TranslationDictionary> = {
                 ageValue: '16 Years Old',
                 school: 'School',
                 schoolValue: 'SMKN 11 Bandung',
-                email: 'Email',
+                whatsapp: 'WhatsApp',
                 ig: 'Instagram'
             }
         },

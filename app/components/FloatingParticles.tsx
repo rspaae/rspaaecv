@@ -18,7 +18,7 @@ export default function FloatingParticles() {
         canvas.height = h;
 
         const mouse = { x: -1000, y: -1000 };
-        const count = 25;
+        const count = 15;
 
         // Create particles as plain data
         const particles = Array.from({ length: count }, () => ({

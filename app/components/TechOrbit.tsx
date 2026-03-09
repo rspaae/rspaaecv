@@ -1,32 +1,66 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import ScrollReveal from './ScrollReveal';
 import TextScramble from './TextScramble';
 import { useLanguage } from '../context/LanguageContext';
 
 const techItems = [
-    { name: 'React', color: '#61DAFB' },
-    { name: 'Next.js', color: '#ffffff' },
-    { name: 'TypeScript', color: '#3178C6' },
-    { name: 'Tailwind', color: '#06B6D4' },
-    { name: 'Node.js', color: '#339933' },
-    { name: 'Python', color: '#3776AB' },
-    { name: 'Unity', color: '#ffffff' },
-    { name: 'Godot', color: '#478CBF' },
-    { name: 'Lua', color: '#000080' },
-    { name: 'PostgreSQL', color: '#4169E1' },
-    { name: 'Git', color: '#F05032' },
+    { name: 'React', color: '#61DAFB', icon: '⚛️' },
+    { name: 'Next.js', color: '#ffffff', icon: '▲' },
+    { name: 'TypeScript', color: '#3178C6', icon: 'TS' },
+    { name: 'Tailwind', color: '#06B6D4', icon: '🎨' },
+    { name: 'Node.js', color: '#339933', icon: '🟢' },
+    { name: 'Python', color: '#3776AB', icon: '🐍' },
+    { name: 'Unity', color: '#ffffff', icon: '🎮' },
+    { name: 'Godot', color: '#478CBF', icon: '🕹️' },
+    { name: 'Lua', color: '#000080', icon: '🌙' },
+    { name: 'PostgreSQL', color: '#4169E1', icon: '🐘' },
+    { name: 'Git', color: '#F05032', icon: '🔀' },
 ];
 
 export default function TechOrbit() {
     const { t } = useLanguage();
-    const radius = 180;
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const container = containerRef.current;
+        if (!container) return;
+
+        const items = container.querySelectorAll<HTMLElement>('.tech-float-item');
+        const speeds = Array.from({ length: items.length }, () => ({
+            x: (Math.random() - 0.5) * 0.4,
+            y: (Math.random() - 0.5) * 0.3,
+        }));
+        const offsets = Array.from({ length: items.length }, () => ({
+            x: 0,
+            y: 0,
+        }));
+
+        let animationId: number;
+        const animate = () => {
+            items.forEach((item, i) => {
+                offsets[i].x += speeds[i].x;
+                offsets[i].y += speeds[i].y;
+
+                // Bounce within range
+                if (Math.abs(offsets[i].x) > 20) speeds[i].x *= -1;
+                if (Math.abs(offsets[i].y) > 15) speeds[i].y *= -1;
+
+                item.style.transform = `translate(${offsets[i].x}px, ${offsets[i].y}px)`;
+            });
+            animationId = requestAnimationFrame(animate);
+        };
+
+        animate();
+        return () => cancelAnimationFrame(animationId);
+    }, []);
 
     return (
         <section id="tech" className="relative py-24 md:py-32" style={{ zIndex: 2 }}>
             <div className="max-w-6xl mx-auto px-6">
                 <ScrollReveal>
-                    <div className="text-center mb-20">
+                    <div className="text-center mb-16">
                         <div className="flex items-center justify-center gap-4 mb-4">
                             <div className="h-px w-[60px]" style={{ background: 'linear-gradient(90deg, transparent, var(--neon-violet))' }} />
                             <span className="text-sm font-medium uppercase tracking-[0.3em]" style={{ color: 'var(--neon-violet)' }}>
@@ -40,91 +74,74 @@ export default function TechOrbit() {
                     </div>
                 </ScrollReveal>
 
-                {/* 3D Orbit — Pure CSS animation, no JS */}
-                <div className="flex items-center justify-center">
-                    <div className="orbit-container relative w-[400px] h-[400px] flex items-center justify-center">
-                        {/* Center label */}
-                        <div className="absolute z-10 text-center">
-                            <div
-                                className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-2 neon-border-glow"
-                                style={{
-                                    background: 'rgba(139, 92, 246, 0.1)',
-                                    border: '1px solid rgba(139, 92, 246, 0.3)',
-                                }}
-                            >
-                                <svg className="w-8 h-8" fill="none" stroke="var(--neon-violet)" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                                </svg>
-                            </div>
-                            <span className="text-xs uppercase tracking-widest" style={{ color: 'var(--text-muted)' }}>Stack</span>
-                        </div>
+                {/* Floating constellation grid */}
+                <div ref={containerRef} className="relative flex flex-wrap items-center justify-center gap-4 md:gap-5 max-w-3xl mx-auto">
+                    {/* Ambient glow behind the grid */}
+                    <div
+                        className="absolute inset-0 pointer-events-none"
+                        style={{
+                            background: 'radial-gradient(ellipse at center, rgba(139,92,246,0.06) 0%, transparent 80%)',
+                            transform: 'translateZ(0)',
+                        }}
+                    />
 
-                        {/* Orbit ring — CSS animation */}
-                        <div
-                            className="orbit-ring absolute inset-0"
-                            style={{
-                                transformStyle: 'preserve-3d',
-                                animation: 'spin-slow 30s linear infinite',
-                            }}
-                        >
-                            {techItems.map((tech, i) => {
-                                const angle = (i / techItems.length) * 360;
-                                const rad = (angle * Math.PI) / 180;
-                                const x = Math.cos(rad) * radius;
-                                const z = Math.sin(rad) * radius;
-
-                                return (
+                    {techItems.map((tech, i) => (
+                        <ScrollReveal key={tech.name} delay={i * 80}>
+                            <div className="tech-float-item group relative">
+                                <div
+                                    className="relative flex items-center gap-3 px-5 py-3 rounded-full cursor-default transition-transform duration-500 group-hover:scale-110"
+                                    style={{
+                                        background: `linear-gradient(135deg, ${tech.color}08, ${tech.color}15)`,
+                                        border: `1px solid ${tech.color}25`,
+                                        backdropFilter: 'blur(8px)',
+                                        WebkitBackdropFilter: 'blur(8px)',
+                                    }}
+                                >
+                                    {/* Glow on hover */}
                                     <div
-                                        key={tech.name}
-                                        className="orbit-item absolute left-1/2 top-1/2 group"
+                                        className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                                         style={{
-                                            transform: `translate(-50%, -50%) translateX(${x}px) translateZ(${z}px)`,
-                                            transformStyle: 'preserve-3d',
+                                            background: `radial-gradient(ellipse at center, ${tech.color}20, transparent 70%)`,
+                                            boxShadow: `0 0 30px ${tech.color}20, inset 0 0 20px ${tech.color}08`,
+                                            border: `1px solid ${tech.color}50`,
+                                            borderRadius: 'inherit',
                                         }}
-                                    >
-                                        <div
-                                            className="w-14 h-14 rounded-xl flex items-center justify-center cursor-default transition-all duration-300 group-hover:scale-125"
-                                            style={{
-                                                background: `${tech.color}10`,
-                                                border: `1px solid ${tech.color}30`,
-                                                boxShadow: `0 0 20px ${tech.color}10`,
-                                            }}
-                                        >
-                                            <span
-                                                className="text-xs font-bold"
-                                                style={{ color: tech.color }}
-                                            >
-                                                {tech.name.slice(0, 2).toUpperCase()}
-                                            </span>
-                                        </div>
-                                        <div
-                                            className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap"
-                                        >
-                                            <span
-                                                className="text-xs font-medium px-2 py-1 rounded-md"
-                                                style={{
-                                                    background: 'rgba(0,0,0,0.8)',
-                                                    border: `1px solid ${tech.color}30`,
-                                                    color: tech.color,
-                                                }}
-                                            >
-                                                {tech.name}
-                                            </span>
-                                        </div>
-                                    </div>
-                                );
-                            })}
-                        </div>
+                                    />
 
-                        {/* Orbit ring visual */}
-                        <div
-                            className="absolute inset-[10%] rounded-full pointer-events-none"
-                            style={{ border: '1px solid rgba(139, 92, 246, 0.1)' }}
-                        />
-                        <div
-                            className="absolute inset-[25%] rounded-full pointer-events-none"
-                            style={{ border: '1px dashed rgba(139, 92, 246, 0.05)' }}
-                        />
+                                    {/* Icon */}
+                                    <span className="relative z-10 text-base select-none">{tech.icon}</span>
+
+                                    {/* Name */}
+                                    <span
+                                        className="relative z-10 text-sm font-semibold tracking-wide whitespace-nowrap"
+                                        style={{ color: tech.color }}
+                                    >
+                                        {tech.name}
+                                    </span>
+
+                                    {/* Pulse dot */}
+                                    <div
+                                        className="relative z-10 w-1.5 h-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                        style={{
+                                            backgroundColor: tech.color,
+                                            boxShadow: `0 0 8px ${tech.color}`,
+                                            animation: 'pulse-glow 2s ease-in-out infinite',
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                        </ScrollReveal>
+                    ))}
+                </div>
+
+                {/* Connection lines decoration */}
+                <div className="flex justify-center mt-12">
+                    <div className="flex items-center gap-3 opacity-30">
+                        <div className="w-2 h-2 rounded-full" style={{ background: 'var(--neon-cyan)' }} />
+                        <div className="h-px w-16" style={{ background: 'linear-gradient(90deg, var(--neon-cyan), var(--neon-violet))' }} />
+                        <div className="w-2 h-2 rounded-full" style={{ background: 'var(--neon-violet)' }} />
+                        <div className="h-px w-16" style={{ background: 'linear-gradient(90deg, var(--neon-violet), var(--neon-magenta))' }} />
+                        <div className="w-2 h-2 rounded-full" style={{ background: 'var(--neon-magenta)' }} />
                     </div>
                 </div>
             </div>
